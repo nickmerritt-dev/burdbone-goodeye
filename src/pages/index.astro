@@ -7,9 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>burdbone/goodeye</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -18,231 +15,71 @@
       }
 
       body {
-        font-family: 'Work Sans', sans-serif;
-        background: #000;
-        color: #FFF;
-        line-height: 1.3;
-      }
-
-      /* Header */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: #000;
-        border-bottom: 4px solid #FFF;
-        padding: 24px 32px;
-        z-index: 1000;
-      }
-
-      .logo {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        text-transform: uppercase;
-      }
-
-      /* Main Content */
-      main {
-        margin-top: 88px;
-      }
-
-      /* Section Rows */
-      .section-row {
-        border-bottom: 4px solid #FFF;
-        min-height: 50vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 80px 32px;
-        transition: background 0.3s;
+        background: url('/goodeyebg.png') center center / cover no-repeat;
+        min-height: 100vh;
         cursor: pointer;
-        text-decoration: none;
-        color: #FFF;
+        position: relative;
       }
 
-      .section-row:hover {
-        background: #FFF;
-        color: #000;
+      .logo-container {
+        position: fixed;
+        top: 40px;
+        right: 40px;
+        width: 150px;
+        height: 150px;
+        perspective: 1000px;
       }
 
-      .section-content {
-        max-width: 1200px;
+      .logo-container img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: spinHorizontal 3s linear infinite;
+        transform-style: preserve-3d;
       }
 
-      .section-number {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        opacity: 0.5;
+      @keyframes spinHorizontal {
+        from {
+          transform: rotateY(0deg);
+        }
+        to {
+          transform: rotateY(360deg);
+        }
       }
 
-      .section-title {
-        font-family: 'Work Sans', sans-serif;
-        font-size: clamp(48px, 8vw, 120px);
-        font-weight: 700;
-        line-height: 0.9;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        margin-bottom: 24px;
-      }
-
-      .section-description {
-        font-size: 16px;
-        line-height: 1.6;
-        max-width: 600px;
-        opacity: 0.8;
-      }
-
-      /* Footer */
-      footer {
-        background: #000;
-        border-top: 4px solid #FFF;
-        padding: 40px 32px;
-      }
-
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-      }
-
-      .footer-section h3 {
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 20px;
-        opacity: 0.5;
-      }
-
-      .footer-links {
-        list-style: none;
-      }
-
-      .footer-links li {
-        margin-bottom: 12px;
-      }
-
-      .footer-links a {
+      /* Click anywhere hint */
+      .hint {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
         color: #FFF;
-        text-decoration: none;
-        font-size: 16px;
-        border-bottom: 2px solid transparent;
-        transition: border-color 0.2s;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        opacity: 0.8;
+        animation: fade 2s ease-in-out infinite;
       }
 
-      .footer-links a:hover {
-        border-bottom-color: #FFF;
-      }
-
-      .footer-bottom {
-        max-width: 1200px;
-        margin: 60px auto 0;
-        padding-top: 32px;
-        border-top: 2px solid #333;
-        font-size: 14px;
-        opacity: 0.5;
-      }
-
-      @media (max-width: 768px) {
-        header {
-          padding: 20px 20px;
-        }
-
-        .logo {
-          font-size: 18px;
-        }
-
-        main {
-          margin-top: 72px;
-        }
-
-        .section-row {
-          padding: 60px 20px;
-          min-height: 40vh;
-        }
-
-        .section-title {
-          font-size: 48px;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        footer {
-          padding: 32px 20px;
-        }
+      @keyframes fade {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.7; }
       }
     </style>
   </head>
-  <body>
-    <header>
-      <div class="logo">BURDBONE/GOODEYE</div>
-    </header>
+  <body onclick="window.location.href='/home'">
+    <div class="logo-container">
+      <!-- Replace this src with your actual logo path -->
+      <img src="/gman2.png" alt="burdbone/goodeye logo" />
+    </div>
+    <div class="hint">CLICK TO ENTER</div>
 
-    <main>
-      <a href="/art" class="section-row">
-        <div class="section-content">
-          <div class="section-number">01</div>
-          <h2 class="section-title">ART</h2>
-          <p class="section-description">
-            Visual works, digital experiments, and creative explorations. 
-            A collection of imagery and form.
-          </p>
-        </div>
-      </a>
-
-      <a href="/music" class="section-row">
-        <div class="section-content">
-          <div class="section-number">02</div>
-          <h2 class="section-title">MUSIC</h2>
-          <p class="section-description">
-            Sound design, production work, and audio experiments. 
-            Original compositions and collaborative pieces.
-          </p>
-        </div>
-      </a>
-
-      <a href="/projects" class="section-row">
-        <div class="section-content">
-          <div class="section-number">03</div>
-          <h2 class="section-title">PROJECTS</h2>
-          <p class="section-description">
-            Code, applications, and interactive experiences. 
-            Web development and creative technology.
-          </p>
-        </div>
-      </a>
-    </main>
-
-    <footer>
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <ul class="footer-links">
-            <li><a href="mailto:your@email.com">EMAIL</a></li>
-            <li><a href="https://are.na/burdbone-goodeyemedia" target="_blank">ARE.NA</a></li>
-            <li><a href="https://github.com/nickmerritt-dev" target="_blank">GITHUB</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Info</h3>
-          <ul class="footer-links">
-            <li><a href="/about">ABOUT</a></li>
-            <li><a href="/archive">ARCHIVE</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        © 2025 BURDBONE/GOODEYE — ALL RIGHTS RESERVED
-      </div>
-    </footer>
+    <script>
+      // Auto-redirect after 3 seconds (optional)
+      // setTimeout(() => {
+      //   window.location.href = '/home';
+      // }, 3000);
+    </script>
   </body>
 </html>
