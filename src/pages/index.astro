@@ -1,0 +1,315 @@
+---
+// src/pages/index.astro
+const name = "Nick Merritt";
+const role = "Developer";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{name}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --black: #000000;
+        --white: #FFFFFF;
+        --off-white: #F5F5F5;
+        --gray: #666666;
+        --accent: #FF3333;
+      }
+
+      body {
+        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: var(--off-white);
+        color: var(--black);
+        line-height: 1.4;
+        cursor: crosshair;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 32px;
+        background: var(--off-white);
+        border-bottom: 2px solid var(--black);
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      nav {
+        display: flex;
+        gap: 32px;
+      }
+
+      nav a {
+        color: var(--black);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 2px;
+        transition: border-color 0.2s;
+      }
+
+      nav a:hover {
+        border-color: var(--black);
+      }
+
+      /* Main Content */
+      main {
+        margin-top: 72px;
+        padding: 80px 32px 32px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-bottom: 120px;
+      }
+
+      h1 {
+        font-size: clamp(48px, 8vw, 120px);
+        font-weight: 600;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+      }
+
+      .subtitle {
+        font-size: clamp(20px, 3vw, 32px);
+        font-weight: 400;
+        color: var(--gray);
+        margin-bottom: 48px;
+        letter-spacing: -0.01em;
+      }
+
+      .bio {
+        max-width: 600px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--gray);
+        margin-bottom: 32px;
+      }
+
+      /* Index / Archive */
+      .section-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 500;
+        margin-bottom: 24px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .index-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1px;
+        background: var(--black);
+        border: 2px solid var(--black);
+        margin-bottom: 80px;
+      }
+
+      .index-item {
+        background: var(--off-white);
+        padding: 24px;
+        cursor: pointer;
+        transition: background 0.2s;
+        border: none;
+        text-decoration: none;
+        color: var(--black);
+        display: block;
+      }
+
+      .index-item:hover {
+        background: var(--white);
+      }
+
+      .index-item-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .index-item-meta {
+        font-size: 14px;
+        color: var(--gray);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Footer */
+      footer {
+        padding: 32px;
+        border-top: 2px solid var(--black);
+        margin-top: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+
+      footer a {
+        color: var(--black);
+        text-decoration: none;
+        border-bottom: 1px solid var(--black);
+        transition: opacity 0.2s;
+      }
+
+      footer a:hover {
+        opacity: 0.6;
+      }
+
+      /* Contact List */
+      .contact-list {
+        list-style: none;
+        font-size: 16px;
+        line-height: 2;
+      }
+
+      .contact-list a {
+        color: var(--black);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .contact-list a:hover {
+        border-color: var(--black);
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 16px 20px;
+        }
+
+        nav {
+          gap: 16px;
+        }
+
+        nav a {
+          font-size: 12px;
+        }
+
+        main {
+          padding: 60px 20px 20px;
+        }
+
+        .index-grid {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">{name}</div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#info">Info</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>{name}</h1>
+        <p class="subtitle">{role} / Artist / Designer</p>
+        <div class="bio">
+          I make things for the internet. Sometimes they work. 
+          Interested in the space between utility and expression.
+          Currently exploring [your current interests].
+        </div>
+      </section>
+
+      <section id="work">
+        <h2 class="section-title">Selected Work</h2>
+        <div class="index-grid">
+          <a href="#" class="index-item">
+            <div class="index-item-title">Project Name</div>
+            <div class="index-item-meta">Web / 2024</div>
+          </a>
+          <a href="#" class="index-item">
+            <div class="index-item-title">Another Project</div>
+            <div class="index-item-meta">Interactive / 2024</div>
+          </a>
+          <a href="#" class="index-item">
+            <div class="index-item-title">Something Else</div>
+            <div class="index-item-meta">Design / 2023</div>
+          </a>
+          <a href="#" class="index-item">
+            <div class="index-item-title">Experimental Work</div>
+            <div class="index-item-meta">Code / 2023</div>
+          </a>
+        </div>
+      </section>
+
+      <section id="info">
+        <h2 class="section-title">Information</h2>
+        <div class="bio">
+          <p style="margin-bottom: 16px;">
+            Based in [Your Location]. Available for collaboration and freelance work.
+          </p>
+          <p>
+            Tools: JavaScript, React, Astro, Git, Figma, VSCode, Browser DevTools
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top: 80px;">
+        <h2 class="section-title">Contact</h2>
+        <ul class="contact-list">
+          <li><a href="mailto:your@email.com">your@email.com</a></li>
+          <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+          <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
+          <li><a href="https://are.na/yourusername" target="_blank">Are.na</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div>© 2025 {name}</div>
+      <div class="footer-links">
+        <a href="#work">Work</a>
+        <a href="#info">Info</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </footer>
+  </body>
+</html>ß
