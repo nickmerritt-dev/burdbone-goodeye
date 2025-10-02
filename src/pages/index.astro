@@ -1,5 +1,5 @@
 ---
-// src/pages/index.astro
+// src/pages/home.astro
 ---
 
 <html lang="en">
@@ -7,6 +7,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>burdbone/goodeye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -15,71 +18,254 @@
       }
 
       body {
-        background: url('/goodeyebg.png') center center / cover no-repeat;
-        min-height: 100vh;
-        cursor: pointer;
-        position: relative;
+        font-family: 'Work Sans', sans-serif;
+        background: #F5F5F0;
+        color: #000;
+        line-height: 1.2;
+        padding-bottom: 80px;
       }
 
-      .logo-container {
-        position: fixed;
-        top: 40px;
-        right: 40px;
-        width: 150px;
-        height: 150px;
-        perspective: 1000px;
+      /* Top Navigation Bar */
+      .top-nav {
+        background: #F5F5F0;
+        border-bottom: 3px solid #000;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
       }
 
-      .logo-container img {
+      .top-nav-left {
+        display: flex;
+        border-right: 3px solid #000;
+      }
+
+      .nav-item {
+        padding: 20px 30px;
+        border-right: 3px solid #000;
+        text-decoration: none;
+        color: #000;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-item:hover {
+        background: #000;
+        color: #F5F5F0;
+      }
+
+      .nav-item:last-child {
+        border-right: none;
+      }
+
+      /* Main Layout */
+      .main-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        min-height: calc(100vh - 63px - 80px);
+      }
+
+      /* Content Area */
+      .content-area {
+        border-right: 3px solid #000;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .site-title {
+        font-size: clamp(60px, 10vw, 140px);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.85;
+        letter-spacing: -0.03em;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .site-address {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 60px;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      .main-logo {
+        width: 400px;
+        height: 400px;
+        margin-bottom: 40px;
+      }
+
+      .main-logo img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        animation: spinHorizontal 3s linear infinite;
-        transform-style: preserve-3d;
       }
 
-      @keyframes spinHorizontal {
-        from {
-          transform: rotateY(0deg);
-        }
-        to {
-          transform: rotateY(360deg);
-        }
+      /* Sidebar Navigation */
+      .sidebar-nav {
+        background: #F5F5F0;
       }
 
-      /* Click anywhere hint */
-      .hint {
-        position: fixed;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #FFF;
-        font-family: 'Work Sans', sans-serif;
-        font-size: 12px;
+      .sidebar-item {
+        border-bottom: 3px solid #000;
+        display: block;
+        text-decoration: none;
+        color: #000;
+        transition: background 0.2s;
+      }
+
+      .sidebar-item:hover {
+        background: #000;
+        color: #F5F5F0;
+      }
+
+      .sidebar-item:hover .sidebar-image {
+        filter: invert(1);
+      }
+
+      .sidebar-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 3px solid #000;
+        transition: filter 0.2s;
+      }
+
+      .sidebar-label {
+        padding: 20px 30px;
+        font-size: 18px;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.2em;
-        opacity: 0.8;
-        animation: fade 2s ease-in-out infinite;
+        letter-spacing: 0.05em;
+        text-align: right;
       }
 
-      @keyframes fade {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.7; }
+      .footer-nav {
+        border-top: 3px solid #000;
+        padding: 20px 30px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Spotify Player */
+      .spotify-player {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #F5F5F0;
+        z-index: 1000;
+      }
+
+      .spotify-player iframe {
+        display: block;
+        width: 100%;
+      }
+
+      @media (max-width: 1024px) {
+        .main-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .content-area {
+          border-right: none;
+          border-bottom: 3px solid #000;
+          padding: 40px 20px;
+        }
+
+        .sidebar-nav {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .sidebar-item {
+          border-right: 3px solid #000;
+        }
+
+        .sidebar-item:last-child {
+          border-right: none;
+        }
+
+        .top-nav {
+          flex-direction: column;
+        }
+
+        .top-nav-left {
+          border-right: none;
+          border-bottom: 3px solid #000;
+        }
+
+        .nav-item {
+          border-bottom: 3px solid #000;
+          border-right: none;
+        }
+
+        .main-logo {
+          width: 250px;
+          height: 250px;
+        }
       }
     </style>
   </head>
-  <body onclick="window.location.href='/home'">
-    <div class="logo-container">
-      <!-- Replace this src with your actual logo path -->
-      <img src="/gman2.png" alt="burdbone/goodeye logo" />
-    </div>
-    <div class="hint">CLICK TO ENTER</div>
+  <body>
+    <nav class="top-nav">
+      <div class="top-nav-left">
+        <a href="#" class="nav-item">Info</a>
+        <a href="#" class="nav-item">Artifacts</a>
+        <a href="#" class="nav-item">Contact</a>
+      </div>
+      <a href="https://are.na/burdbone-goodeyemedia" class="nav-item" target="_blank">Are.na</a>
+    </nav>
 
-    <script>
-      // Auto-redirect after 3 seconds (optional)
-      // setTimeout(() => {
-      //   window.location.href = '/home';
-      // }, 3000);
-    </script>
+    <div class="main-layout">
+      <div class="content-area">
+        <h1 class="site-title">BURDBONE<br>GOODEYE</h1>
+        <div class="site-address">
+          SAN DIEGO, CA<br>
+          BUDAPEST, HUNGARY<br>
+          LONDON, ENGLAND<br>
+          JOHANNESBURG, SOUTH AFRICA
+        </div>
+        <div class="main-logo">
+          <img src="/gman.png" alt="burdbone/goodeye" />
+        </div>
+        <div class="footer-nav">
+          © 2025 BURDBONE/GOODEYE
+        </div>
+      </div>
+
+      <aside class="sidebar-nav">
+        <a href="/art" class="sidebar-item">
+          <img src="/placeholder-art.jpg" alt="Art" class="sidebar-image" />
+          <div class="sidebar-label">ART</div>
+        </a>
+        <a href="/music" class="sidebar-item">
+          <img src="/placeholder-music.jpg" alt="Music" class="sidebar-image" />
+          <div class="sidebar-label">MUSIC</div>
+        </a>
+        <a href="/projects" class="sidebar-item">
+          <img src="/placeholder-projects.jpg" alt="Projects" class="sidebar-image" />
+          <div class="sidebar-label">PROJECTS</div>
+        </a>
+      </aside>
+    </div>
+
+    <!-- Spotify Player -->
+    <div class="spotify-player">
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0pJDXvZwOAYgySploeeXZQ?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
   </body>
 </html>
